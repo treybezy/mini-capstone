@@ -12,6 +12,11 @@ has_many :orders
     
   # end
   has_many :product_categories
+  has_many :categories, through: :products_categories
+
+  # def categories
+  #   product_categories.map { |product_category| product_category.category }
+  end
 
   def is_discounted?
     if price < 10
