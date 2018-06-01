@@ -6,7 +6,8 @@ belongs_to :supplier
     
   # end
 has_many :images
-has_many :orders
+has_many :carted_products
+has_many :orders, through: :carted_products
   # def imagess
   #   Image.where(product_id: self.id)
     
@@ -16,24 +17,23 @@ has_many :orders
 
   # def categories
   #   product_categories.map { |product_category| product_category.category }
-  end
+  # end
 
   def is_discounted?
-    if price < 10
+    price < 10
   end
-end
-
 
   def tax
     price  * 0.09
-    
   end
 
   def total
      price + tax
-
   end
-
-
-
 end
+
+
+
+
+
+
