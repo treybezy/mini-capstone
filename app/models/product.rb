@@ -1,4 +1,12 @@
 class Product < ApplicationRecord
+  validates :name, presence: true
+  validates :name, uniqueness: true
+  validates :price, presence: true
+  validates :price, numericality: {greater_than: 0}
+  validates :description, presence: true
+  validates :description, length: { in: 10..500 }
+
+
 
 belongs_to :supplier
   # def supplier
@@ -18,6 +26,8 @@ has_many :orders, through: :carted_products
   # def categories
   #   product_categories.map { |product_category| product_category.category }
   # end
+
+
 
   def is_discounted?
     price < 10
